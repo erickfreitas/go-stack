@@ -11,6 +11,6 @@ routes.post('/users', UserController.store);
 
 routes.use(authMidleware);
 
-routes.put('/users/:id', UserController.update);
+routes.put('/users', UserController.update);
 
 export default routes;
