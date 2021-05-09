@@ -2155,6 +2155,11 @@ node-modules-regexp@^1.0.0:
   resolved "https://registry.npmjs.org/node-modules-regexp/-/node-modules-regexp-1.0.0.tgz"
   integrity sha1-jZ2+KJZKSsVxLpExZCEHxx6Q7EA=
 
+nodemailer@^6.6.0:
+  version "6.6.0"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.6.0.tgz#ed47bb572b48d9d0dca3913fdc156203f438f427"
+  integrity sha512-ikSMDU1nZqpo2WUPE0wTTw/NGGImTkwpJKDIFPZT+YvvR9Sj+ze5wzu95JHkBMglQLoG2ITxU21WukCC/XsFkg==
+
 nodemon@^2.0.7:
   version "2.0.7"
   resolved "https://registry.npmjs.org/nodemon/-/nodemon-2.0.7.tgz"
