@@ -1,22 +1,14 @@
 import Appointment from '../models/Appointment';
 import User from '../models/User';
+
 import * as Yup from 'yup';
+import { startOfHour, parseISO, isBefore } from 'date-fns';
 
 class AppointmentController {
     async store(req, res) {
         const schema = Yup.object().shape({
             provider_id: Yup.number().required(),
             date: Yup.date().required()
-        });
-
-        // exemplo pegando erros de validação
-        schema.validate(req.body, { abortEarly: false }).then(function() {
-            // Success
-        }).catch(function (err) {
-            err.inner.forEach(e => {
-                console.log(e.message, e.path);
-            });
-            return res.status(400).json({ error: err.inner });
         });
 
         if (!(await schema.isValid(req.body))) {
@@ -34,10 +26,30 @@ class AppointmentController {
             return res.status(401).json({ error: 'You can only create appointments to providers.' });
         }
 
+        //verificando se é data passada
+        const hourStart = startOfHour(parseISO(date));
+
+        if (isBefore(hourStart, new Date())) {
+            return res.status(401).json({ error: 'Past dates are not permitted.' });
+        }
+
+        //verificando disponibilidade
+        const checkAvailability = await Appointment.findOne({
+            where: {
+                provider_id,
+                canceled_at: null,
+                date: hourStart
+            }
+        })
+
+        if (checkAvailability) {
+            return res.status(401).json({ error: 'Appointment date is note available' });
+        }
+
         const appointment = await Appointment.create({
             user_id: req.userId,
             provider_id,
-            date
+            date: hourStart
         })
 
         return res.json(appointment);
