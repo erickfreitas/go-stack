@@ -2,11 +2,13 @@ import Appointment from '../models/Appointment';
 import User from '../models/User';
 import File from '../models/File';
 import Notification from '../schemas/Notification';
-import Mail from '../../lib/Mail';
+import Queue from '../../lib/Queue';
+import CancellationEmail from '../jobs/CancellationEmail';
 
 import * as Yup from 'yup';
 import { startOfHour, parseISO, isBefore, format, subHours } from 'date-fns';
 import pt from 'date-fns/locale/pt';
+
 
 class AppointmentController {
     async index(req, res) {
@@ -132,16 +134,7 @@ class AppointmentController {
         appointment.canceled_at = new Date();
         await appointment.save();
 
-        await Mail.sendMail({
-            to: `${appointment.provider.email}`,
-            subject: 'Agendamento cancelado',
-            template: `cancelation`,
-            context: {
-                provider: appointment.provider.name,
-                user: appointment.user.name,
-                date: format(appointment.date, "'dia' d 'de' MMMM, 'às' H:mm", { locale: pt })
-            }
-        });
+        await Queue.add(CancellationEmail.key, { appointment });
 
         return res.json(appointment);
     }
