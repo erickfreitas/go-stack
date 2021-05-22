@@ -12,10 +12,11 @@ routes.post('/sessions', SessionController.store);
 routes.get('/users', UserController.list);
 routes.post('/users', UserController.store);
 
- routes.use(authMidleware);
+routes.use(authMidleware);
 
 routes.put('/users', UserController.update);
 
 routes.post('/recipients', RecipientController.store);
+routes.put('/recipients/:id', RecipientController.update);
 
 export default routes;
