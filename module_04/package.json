@@ -22,6 +22,7 @@
     "D": "^1.0.0",
     "css-loader": "^6.5.0",
     "file-loader": "^6.2.0",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "style-loader": "^3.3.1"

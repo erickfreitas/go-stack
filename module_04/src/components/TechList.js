@@ -1,6 +1,21 @@
 import React, { Component } from "react";
+import TechItem from "./TechItem";
+import PropTypes from "prop-types";
 
 class TechList extends Component {
+
+    //Definindo propriedades padrões
+    static defaultProps = {
+        // tech: 'oculto',        
+    };
+
+    //Definindo tipos das propriedade
+    static propTypes = {
+        // tech: PropTypes.string,
+        // onDelete: PropTypes.func.isRequired
+    }
+    
+
     state = {
         newTech: '',
         techs: [
@@ -25,11 +40,21 @@ class TechList extends Component {
         }
     }
 
+    handleDelete = (tech) => {
+        this.setState({ techs: this.state.techs.filter(t => t != tech) });
+    }
+
     render() {
         return(
             <form onSubmit={this.handleSubmit}>
                 <ul>
-                    {this.state.techs.map(tech => <li key={tech}>{tech}</li>)}
+                    {this.state.techs.map(tech => 
+                        <TechItem
+                            key={tech} 
+                            tech={tech} 
+                            onDelete={() => { this.handleDelete(tech) }}
+                        />)
+                    }
                 </ul>
                 <input 
                     type="text" 
