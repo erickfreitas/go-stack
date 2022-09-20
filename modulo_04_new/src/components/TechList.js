@@ -3,6 +3,16 @@ import React, { Component } from "react";
 import TechItem from "./TechItem";
 
 class TechList extends Component {
+    //definindo default Properties em componente tipo classe
+    // static defaultProps = {
+    //     tech: 'Oculto'
+    // };
+
+    //Definindo propTypes em componente tipo classe
+    static propTypes = {
+        tech: PropTypes.string,
+    }
+
     state = {
         newTech: '',
         techs: [
@@ -40,6 +50,7 @@ class TechList extends Component {
                             onDelete={() => this.handleDelete(tech)}
                         />
                     ))}
+                    <TechItem tech='test'/>
                 </ul>
                 <input 
                     type="text" 
