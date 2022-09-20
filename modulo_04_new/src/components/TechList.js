@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import PropTypes from  'prop-types';
 
 import TechItem from "./TechItem";
 
@@ -9,18 +10,37 @@ class TechList extends Component {
     // };
 
     //Definindo propTypes em componente tipo classe
-    static propTypes = {
-        tech: PropTypes.string,
-    }
+    // static propTypes = {
+    //     tech: PropTypes.string,
+    // }
 
     state = {
         newTech: '',
-        techs: [
-            'Node.js',
-            'React.js',
-            'React Native'
-        ]
+        techs: []
     };
+
+    //executado assim que o componente aparece em tela
+    componentDidMount() {
+        const techs = localStorage.getItem('techs');
+
+        if(techs) {
+            this.setState({ techs: JSON.parse(techs) });
+        }
+    }
+
+    //executado sempre que houver alterações nas props ou estado
+    componentDidUpdate(prevProps, prevState) {
+        //this.props, this.state
+
+        if(prevState.techs !== this.state.techs) {
+            localStorage.setItem('techs', JSON.stringify(this.state.techs));
+        }
+    }
+
+    //executado quando o componente deixa de existir
+    componentWillUnmount() {
+
+    }
 
     handleInputChange = e => {
         this.setState({ newTech: e.target.value });
@@ -50,7 +70,6 @@ class TechList extends Component {
                             onDelete={() => this.handleDelete(tech)}
                         />
                     ))}
-                    <TechItem tech='test'/>
                 </ul>
                 <input 
                     type="text" 
