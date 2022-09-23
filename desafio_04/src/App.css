@@ -1,0 +1,42 @@
+.header {
+    background: #4A90E2;
+    padding: 10px 30px;
+    max-height: 30px;
+    width: 800px;
+}
+
+.logo-facebook, .profile {
+    display: inline-block;
+}
+
+.logo-facebook img {
+    width: 140px;
+}
+
+.profile {
+    float: right;
+}
+
+.profile a {
+    color: white;
+    font-family: arial;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0 10px;
+    position: relative;
+    top: -19px;
+}
+
+.profile img {
+    display: inline-block;
+    width: 40px;
+    position: relative;
+    top: -5px;
+}
+
+.post-list {
+    background: #F2F2F2;
+    padding: 10px 30px;
+    max-height: 30px;
+    width: 800px;
+}
