@@ -1,3 +1,7 @@
+body {
+    font-family: arial;
+}
+
 .header {
     background: #4A90E2;
     padding: 10px 30px;
@@ -18,8 +22,7 @@
 }
 
 .profile a {
-    color: white;
-    font-family: arial;
+    color: white;    
     font-weight: 600;
     text-decoration: none;
     padding: 0 10px;
@@ -37,6 +40,57 @@
 .post-list {
     background: #F2F2F2;
     padding: 10px 30px;
-    max-height: 30px;
     width: 800px;
+}
+
+.post {
+    background: #fff;
+    width: 80%;
+    margin-left: 10%;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.profile-image {
+    width: 50px;
+    border-radius: 25px;
+}
+
+.post-info {
+    display: inline-block;
+    position: relative;
+    left: 15px;
+    top: -15px;
+}
+
+.profile-name {
+    display: block;
+    font-weight: 700;
+}
+
+.post-date {
+    color: #9b9292;
+}
+
+.post-body span {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+    font-size: 17px;
+}
+
+.comment-content {
+    display: inline-block;
+    background: #EEEEEE;
+    width: 570px;
+    padding: 10px;
+    min-height: 45px;
+    border-radius: 20px;
+    position: relative;
+    left: 10px;
+}
+
+.comment-name {
+    display: inline-block;
+    font-weight: 700;
 }
