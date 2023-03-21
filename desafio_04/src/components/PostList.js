@@ -31,7 +31,7 @@ class PostList extends Component{
                 name: "Julio Alcantara",
                 avatar: "http://url-da-imagem.com/imagem.jpg"
               },
-              date: "04 Jun 2019",
+              date: "08 Jun 2019",
               content: "Pessoal, alguém sabe se a Rocketseat está contratando?",
               comments: [
                 {
@@ -54,6 +54,9 @@ class PostList extends Component{
                     <Post 
                       key={post.id} 
                       name={post.author.name}
+                      content={post.content}
+                      date={post.date}
+                      comments={post.comments}
                     />
                 ))}
             </div>
